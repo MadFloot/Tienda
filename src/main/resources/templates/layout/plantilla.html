@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+
+
     <head th:fragment="head">
-        <title>Mad Vapes</title>
-        <meta charset="UTF-8"/>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
-        <script th:src="@{/webjars/jquery/jquery.main.js}"></script>
-        <script th:src="@{/webjars/popper.js/umd/popper.main.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.main.js}"></script>
-
-
+        <title>Techshop</title>
+        <meta charset="UTF-8">
+        </meta>
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet" />
+        <script th:src="@{/js/rutinas.js}"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </head>
+
+
+
     <body>
-        ----------Se crea el fragmento “header”------------
         <header th:fragment="header" class="header">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
                 <div class="container">
@@ -27,28 +30,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <ul class="navbar-nav">
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link"
+                                                         th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
+                            <li class="nav-item px-2"><a class="nav-link"
+                                                         th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle"
-                               data-bs-toggle="dropdown"
-                               href="#"
-                               role="button"
-                               aria-expanded="false">[[#{plantilla.pruebas}]]</a>
-                                <ul class="dropdown-menu dropdown-menu-dark"
-                                    <li><a class="dropdown-item" th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li>
-                                    <li><a class="dropdown-item" th:href="@{/pruebas/listado2}">[[#{plantilla.consultas}]]</a></li>   
-                        </ul>
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                   aria-expanded="false">[[#{plantilla.pruebas}]]</a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item"
+                                           th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li>
+                                    <li><a class="dropdown-item"
+                                           th:href="@{/pruebas/listado2}">[[#{plantilla.consultas}]]</a></li>
+                                </ul>
                             </li>
-                            <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>   
+                            <li class="nav-item px-2"><a class="nav-link"
+                                                         th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
                         </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                   aria-expanded="false">[[#{plantilla.idioma}]]</a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" th:href="@{/(lang=es)}">ES</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN</a></li>
+                                </ul>
                             </li>
-                        <div class="col-md-3">
-                            <ul class="navbar-nav">                                
-                                <li class="nav-item px-2"><a class="nav-link" th:href="@{/(lang=es)}">ES</a></li>
-                                <li class="nav-item px-2"><a class="nav-link" th:href="@{/(lang=en)}">EN</a></li>
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
                 </div>
             </nav>
@@ -61,15 +69,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                 </div>
             </section>
-                   </header>
-
+        </header>
         <footer th:fragment="footer" class="bg-info text-white mt-5 p-2">
-            <div class="col">
-                <p class="lead text-center">
-                    &COPY [[#{plantilla.derechos}]]
-                </p>
+            <div class="container">
+                <div class="col">
+                    <p class="lead text-center">&COPY[[#{plantilla.derechos}]]</p>
+                </div>
             </div>
         </footer>
 
+
+
     </body>
+
+
+
 </html>
