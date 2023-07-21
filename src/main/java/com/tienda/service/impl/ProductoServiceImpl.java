@@ -42,7 +42,26 @@ public class ProductoServiceImpl implements ProductoService {
     public void delete(Producto producto) {
         productoDao.delete(producto);
     }
-        
+    
+      //Se implementa un metodo para recuperar los productos con una consulta ampliada
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> buscaProductosPorPrecioEntre(double precioInf, double precioSup) {
+        return productoDao.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
+    }
+     //Se implementa un metodo para recuperar los productos con una consulta jpql
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto>consultaJPQL(double precioInf, double precioSup) {
+        return productoDao.metodoJPQL(precioInf, precioSup);
+    }
+    
+     @Override
+    @Transactional(readOnly=true)    
+    public List<Producto> metodoNativo(double precioInf, double precioSup) {
+        return productoDao.metodoNativo(precioInf, precioSup);
+    }
+    
     
 }
 
