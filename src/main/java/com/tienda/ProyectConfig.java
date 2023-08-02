@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.tienda;
 
 import java.util.Locale;
@@ -26,25 +22,23 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
-public class ProjectConfig implements WebMvcConfigurer {
+public class ProyectConfig implements WebMvcConfigurer {
 
     /* Los siguientes métodos son para hacer uso de Internacionalización */
     @Bean
     public LocaleResolver localeResolver() {
         var slr = new SessionLocaleResolver();
-
         slr.setDefaultLocale(Locale.getDefault());
         slr.setLocaleAttributeName("session.current.locale");
         slr.setTimeZoneAttributeName("session.current.timezone");
-
         return slr;
     }
 
     @Bean
+
     public LocaleChangeInterceptor localeChangeInterceptor() {
         var lci = new LocaleChangeInterceptor();
         lci.setParamName("lang");
-
         return lci;
     }
 
@@ -53,13 +47,12 @@ public class ProjectConfig implements WebMvcConfigurer {
         registro.addInterceptor(localeChangeInterceptor());
     }
 
-//    Bean para utilizar los textos de mensajes en una clase java
+    /*Bean para utilizar los textos de mensajes en una clase Java*/
     @Bean("messagesSource")
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasenames("messages");
         messageSource.setDefaultEncoding("UTF-8");
-
         return messageSource;
     }
 
@@ -102,37 +95,35 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .logout((logout) -> logout.permitAll());
         return http.build();
     }
+
     /* El siguiente método se utiliza para completar la clase no es 
     realmente funcional, la próxima semana se reemplaza con usuarios de BD */
- /*
-    @Bean
-    public UserDetailsService users() {
-        UserDetails admin = User.builder()
-                .username("madfloot")
-                .password("{noop}123")
-                .roles("USER", "VENDEDOR", "ADMIN")
-                .build();
-        UserDetails sales = User.builder()
-                .username("rebeca")
-                .password("{noop}456")
-                .roles("USER", "VENDEDOR")
-                .build();
-        UserDetails user = User.builder()
-                .username("pedro")
-                .password("{noop}789")
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(user, sales, admin);
-    } */
+//    @Bean
+//    public UserDetailsService users() {
+//        UserDetails admin = User.builder()
+//                .username("juan")
+//                .password("{noop}123")
+//                .roles("USER", "VENDEDOR", "ADMIN")
+//                .build();
+//        UserDetails sales = User.builder()
+//                .username("rebeca")
+//                .password("{noop}456")
+//                .roles("USER", "VENDEDOR")
+//                .build();
+//        UserDetails user = User.builder()
+//                .username("pedro")
+//                .password("{noop}789")
+//                .roles("USER")
+//                .build();
+//        return new InMemoryUserDetailsManager(user, sales, admin);
+//    }
+    @Autowired
+    UserDetailsService userDetailsService;
 
     @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    public void configurerGlobal(AuthenticationManagerBuilder amd) throws Exception {
-        amd.userDetailsService(userDetailsService)
+    public void configurerGlobal(AuthenticationManagerBuilder amb) throws Exception {
+        amb
+                .userDetailsService(userDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
-
     }
-
 }

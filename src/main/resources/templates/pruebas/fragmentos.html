@@ -11,23 +11,17 @@
             <div class="container">
                 <div class="row">
                     <ul class="nav nav-tabs">
-                       <li class="nav-item">
-                        <a class="nav-link" 
-                           aria-current="page" 
-                           href="/pruebas/listado"
-                           >[[#{pruebas.todas}]]</a>
-                    </li>
-                        <li class="nav-item" th:each="categoria : ${categorias}">
-                            <a class="nav-link" 
-                           th:href="@{/pruebas/listado/}+${categoria.idCategoria}"
-                           >[[${categoria.descripcion}]]</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/pruebas/listado">Todas</a>
                         </li>
+                        <li class="nav-item" th:each="categoria : ${categorias}">
+                            <a class="nav-link" th:href="@{/pruebas/listado/}+${categoria.idCategoria}">[[${categoria.descripcion}]]</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
-
         </section>
-
 
 
         <!-- 2 Sección principal para mostrar la informaccion de la entidad producto -->
@@ -49,6 +43,7 @@
                                             <th>[[#{producto.total}]]</th>
                                             <th>[[#{producto.activo}]]</th>
                                             <th>[[#{producto.categoria}]]</th>
+
                                             <th></th></tr>
                                     </thead>
                                     <tbody>
@@ -58,7 +53,6 @@
                                             <td>[[${producto.precio}]]</td>
                                             <td>[[${producto.existencias}]]</td>
                                             <td>[[${producto.precio*producto.existencias}]]</td>
-
                                             <td th:text="${producto.activo} ? 'Activa' : 'Inactiva'" />
                                             <td>[[${producto.categoria.descripcion}]]</td>
                                             <td><a th:href="@{/producto/eliminar/}+${producto.idProducto}"
@@ -86,7 +80,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- 3 Sección para crear los filtros -->
         <section th:fragment="filtros" class="bg-light">
             <div class="row py-2">
@@ -117,8 +111,8 @@
                         </div>
                     </form>
                 </div>   
-                
-                           <div class="col-md-3">
+
+                <div class="col-md-3">
                     <form method="POST" th:action="@{/pruebas/query2}" 
                           class="was-validated">
                         <div class="card">                            
@@ -137,15 +131,15 @@
                                 </div>
                             </div>
                             <div class="card-footer text-center">
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn btn-success">
                                     <i class="fas fa-check"></i> [[#{pruebas.jpql}]]
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>   
-               
-                                <div class="col-md-3">
+                </div>
+                
+                <div class="col-md-3">
                     <form method="POST" th:action="@{/pruebas/query3}" 
                           class="was-validated">
                         <div class="card">                            
@@ -164,16 +158,17 @@
                                 </div>
                             </div>
                             <div class="card-footer text-center">
-                                <button type="button" class="btn btn-outline-warning">
+                                <button type="submit" class="btn btn-danger">
                                     <i class="fas fa-check"></i> [[#{pruebas.nativo}]]
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>   
+                </div>
                 
             </div>
         </section> 
-        
+
+
     </body>
 </html>
