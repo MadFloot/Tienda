@@ -22,7 +22,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
-public class ProyectConfig implements WebMvcConfigurer {
+public class ProjectConfig implements WebMvcConfigurer {
 
     /* Los siguientes métodos son para hacer uso de Internacionalización */
     @Bean
